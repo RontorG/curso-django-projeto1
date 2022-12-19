@@ -1,10 +1,11 @@
 <div class="recipe recipe-list-item">
 	<div class="recipe-cover">
-		<img src="https://via.placeholder.com/1280x720.png/269fe6/" alt="temporario">
+		<img src="{{ recipe.cover.url }}" alt="temporario">
+		<!-- https://via.placeholder.com/1280x720.png/269fe6/ -->
 	</div>
 	<div class="recipe-title-container">
 		<div class="recipe-title">
-			<h2 class="recipe-title">The Best</h2>
+			<h2 class="recipe-title">{{ recipe.title }}</h2>
 		</div>
 	</div>
 
@@ -12,37 +13,35 @@
 	<div class="recipe-author">
 		<span class="recipe-author-item">
 			<i class="fa-solid fa-user"></i>
-			The Best
+			{{ recipe.author.first_name }} {{ recipe.author.last_name }}
 		</span>
 		<span class="recipe-author-item">
 			<i class="fa-regular fa-calendar-days"></i>
-			08/12/2022 às 23:02
+			{{ recipe.creation_date|date:"d/m/Y" }} às {{ recipe.creation_date|date:"H:i" }}
 		</span>
 		<span class="recipe-author-item">
 			<a href="">
 				<i class="fa-solid fa-layer-group"></i>
-				<span>receita</span>
+				<span> {{ recipe.category.name }} </span>
 			</a>
 		</span>
 	</div>
 
 	<div class="recipe-content">
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisi erat, volutpat sed 
-		finibus eu, accumsan ac leo. Ut eget lacus vestibulum, iaculis ante ut,
-		fringilla quam. Integer quis scelerisque ex.</p>
+		<p>{{ recipe.description }}</p>
 	</div>
 
 	<div class="recipe-meta-container">
 		<div class="recipe-meta recipe-preparation">
 			<h3 class="recipe-meta-title"><i class="fa-regular fa-hourglass-half"></i> Preparo</h3>
 			<div class="recipe-meta-text">
-				0 Minutos
+				{{ recipe.preparation_time }} {{ recipe.preparation_time_unit }}
 			</div>
 		</div>
 		<div class="recipe-meta recipe-servings">
 			<h3 class="recipe-meta-title"><i class="fa-solid fa-pizza-slice"></i> Porções</h3>
 			<div class="recipe-meta-text">
-				0 Porções
+				{{ recipe.servings }} {{ recipe.servings_unit }}
 			</div>
 		</div>
 	</div>
