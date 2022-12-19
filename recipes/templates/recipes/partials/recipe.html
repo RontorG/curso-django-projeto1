@@ -41,18 +41,25 @@
 		<div class="recipe-meta recipe-servings">
 			<h3 class="recipe-meta-title"><i class="fa-solid fa-pizza-slice"></i> Porções</h3>
 			<div class="recipe-meta-text">
-				{{ recipe.servings }} {{ recipe.servings_unit }}
+				{{ recipe.servings }} 
 			</div>
 		</div>
 	</div>
 
-		<footer class="recipe-footer">
-			<a class="recipe-read-more button button-dark button-full-width" href="">
-				<i class="fa-solid fa-eye"></i>
-				<span>ver mais</span>
-			</a>
-		</footer>
+		{% if is_detail_page is not True %}
+			<footer class="recipe-footer">
+				<a class="recipe-read-more button button-dark button-full-width" href="">
+					<i class="fa-solid fa-eye"></i>
+					<span>ver mais</span>
+				</a>
+			</footer>
+		{% endif %}
 
+		{% if is_detail_page is True %}
+			<div class="preparation-steps"> 
+				{{ recipe.preparation_steps|linebreaksbr }}
+			</div>
+		{% endif %}
 	</div>
 
 
