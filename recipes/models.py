@@ -1,6 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=65)
 
 
 class Recipe(models.Model):
@@ -15,4 +20,6 @@ class Recipe(models.Model):
     preparation_steps_is_html = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     is_published = models.BooleanField(default=False)
-    cover = 
+    cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
