@@ -22,15 +22,19 @@ def category(request, category_id):
             ).order_by('-id'))
             
     return render(request, 'recipes/pages/category.html', context={
-    'recipes' : recipes,
-    'category' : f'{recipes[0].category.name.capitalize()} - Category',
+        'recipes' : recipes,
+        'category' : f'{recipes[0].category.name.capitalize()} - Category',
     })
 
 
-
 def recipe(request, id):
+    recipe = Recipe.objects.filter(
+                pk=id,
+                is_published=True
+            ).order_by('-id').first()
+
     return render(request, 'recipes/pages/recipe-view.html', context={
-        'recipe' : makeRecipe(),
+        'recipe' : recipe,
         'is_detail_page' : True,
-        })
+    })
 

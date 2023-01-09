@@ -61,7 +61,7 @@
 		<div class="recipe-meta recipe-servings">
 			<h3 class="recipe-meta-title"><i class="fa-solid fa-pizza-slice"></i> Porções</h3>
 			<div class="recipe-meta-text">
-				{{ recipe.servings }} 
+				{{ recipe.servings }} {{ recipe.servings_unit }}
 			</div>
 		</div>
 	</div>
@@ -76,9 +76,13 @@
 		{% endif %}
 
 		{% if is_detail_page is True %}
-			<div class="preparation-steps"> 
+		<div class="preparation-steps"> 
+			{% if recipe.preparation_steps_is_html is True %} 
+				{{ recipe.preparation_steps|safe }}
+			{% else %}
 				{{ recipe.preparation_steps|linebreaksbr }}
-			</div>
+			{% endif %}
+		</div>
 		{% endif %}
 	</div>
 
